@@ -1,6 +1,8 @@
 package pl.pawel.warhammer.generator.human;
 
-public class Human {
+import pl.pawel.warhammer.generator.Character;
+
+public class Human implements Character {
 
     private final String name;
     private final String surname;
@@ -12,14 +14,22 @@ public class Human {
         this.age = age;
     }
 
+    @Override
+    public String getRace() {
+        return "human";
+    }
+
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public String getSurname() {
         return surname;
     }
 
+    @Override
     public int getAge() {
         return age;
     }

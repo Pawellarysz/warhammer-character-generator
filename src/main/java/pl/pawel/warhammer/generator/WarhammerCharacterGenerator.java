@@ -2,6 +2,7 @@ package pl.pawel.warhammer.generator;
 
 import pl.pawel.warhammer.generator.human.Human;
 import pl.pawel.warhammer.generator.human.HumanCharacterGenerator;
+import pl.pawel.warhammer.generator.orc.Orc;
 
 import javax.sound.midi.Soundbank;
 import java.util.Arrays;
@@ -16,24 +17,22 @@ public class WarhammerCharacterGenerator {
         System.out.println("Welcome to Warhammer character generator");
         System.out.print("Type race: ");
         final String race = scanner.nextLine();
+
+        Character character;
 //        Arrays.stream(args).forEach(System.out::println);
         switch (race) {
             case "human":
-                final Human human = HUMAN_CHARACTER_GENERATOR.generate();
-
-                System.out.println("New human:");
-                System.out.println("Name: " + human.getName());
-                System.out.println("Surname:" + human.getSurname());
-                System.out.println("Age:" + human.getAge());
+                character = HUMAN_CHARACTER_GENERATOR.generate();
                 break;
             case "orc":
-                System.out.println("New orc:");
-                System.out.println("Name: Ugabugand");
-                System.out.println("Surname: The Strong");
-                System.out.println("Age: 19");
+                character = new Orc();
                 break;
             default:
-                System.out.println("Unexpected race: " + race);
+                throw new RuntimeException("Unexpected race: " + race);
         }
+        System.out.println("New " + character.getRace());
+        System.out.println("Name: " + character.getName());
+        System.out.println("Surname:" + character.getSurname());
+        System.out.println("Age:" + character.getAge());
     }
 }
